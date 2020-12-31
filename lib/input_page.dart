@@ -25,29 +25,27 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                     child: ReusableCard(
-                      cardChild: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.mars,
-                            size: 80,
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            'MALE',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          )
-                        ],
+                      cardChild: CardContent(
+                        textContent: 'Male',
+                        iconContent: Icon(
+                          FontAwesomeIcons.mars,
+                          size: 80,
+                        ),
                       ),
                       background: Color(reusableCardColor),
                     ),
                   ),
                   Expanded(
-                    child: ReusableCard(background: Color(reusableCardColor)),
+                    child: ReusableCard(
+                      cardChild: CardContent(
+                        textContent: 'Female',
+                        iconContent: Icon(
+                          FontAwesomeIcons.venus,
+                          size: 80,
+                        ),
+                      ),
+                      background: Color(reusableCardColor),
+                    ),
                   ),
                 ],
               ),
@@ -84,6 +82,31 @@ class _InputPageState extends State<InputPage> {
             ),
           ],
         ));
+  }
+}
+
+class CardContent extends StatelessWidget {
+  final String textContent;
+  final Icon iconContent;
+  CardContent({this.textContent, this.iconContent});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        iconContent,
+        SizedBox(
+          height: 15,
+        ),
+        Text(
+          textContent,
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        )
+      ],
+    );
   }
 }
 
