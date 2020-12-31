@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+//Colors
+const bottomContainerColor = 0xFFEB1555;
+const bottomContainerHeight = 80.0;
+const reusableCardColor = 0xFF1D1E33;
 
 class InputPage extends StatefulWidget {
   @override
@@ -18,10 +24,30 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   Expanded(
-                    child: ReusableCard(background: Color(0xFF1D1E33)),
+                    child: ReusableCard(
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.mars,
+                            size: 80,
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            'MALE',
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          )
+                        ],
+                      ),
+                      background: Color(reusableCardColor),
+                    ),
                   ),
                   Expanded(
-                    child: ReusableCard(background: Color(0xFF1D1E33)),
+                    child: ReusableCard(background: Color(reusableCardColor)),
                   ),
                 ],
               ),
@@ -30,7 +56,9 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   Expanded(
-                    child: ReusableCard(background: Color(0xFF1D1E33)),
+                    child: ReusableCard(
+                      background: Color(reusableCardColor),
+                    ),
                   ),
                 ],
               ),
@@ -40,13 +68,19 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   Expanded(
-                    child: ReusableCard(background: Color(0xFF1D1E33)),
+                    child: ReusableCard(background: Color(reusableCardColor)),
                   ),
                   Expanded(
-                    child: ReusableCard(background: Color(0xFF1D1E33)),
+                    child: ReusableCard(background: Color(reusableCardColor)),
                   ),
                 ],
               ),
+            ),
+            Container(
+              color: Color(bottomContainerColor),
+              height: bottomContainerHeight,
+              width: double.infinity,
+              margin: EdgeInsets.only(top: 10),
             ),
           ],
         ));
@@ -54,12 +88,14 @@ class _InputPageState extends State<InputPage> {
 }
 
 class ReusableCard extends StatelessWidget {
-  Color background;
-  ReusableCard({this.background});
+  final Color background;
+  final Widget cardChild;
+  ReusableCard({this.background, this.cardChild});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      child: cardChild,
       margin: EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: background,
