@@ -24,6 +24,15 @@ class _InputPageState extends State<InputPage> {
         maleCardColor = inactiveCard;
       } else {
         maleCardColor = activeCard;
+        femaleCardColor = inactiveCard;
+      }
+    }
+    if (gender == 2) {
+      if (femaleCardColor == activeCard) {
+        femaleCardColor = inactiveCard;
+      } else {
+        femaleCardColor = activeCard;
+        maleCardColor = inactiveCard;
       }
     }
   }
@@ -59,15 +68,22 @@ class _InputPageState extends State<InputPage> {
                     ),
                   ),
                   Expanded(
-                    child: ReusableCard(
-                      cardChild: CardContent(
-                        textContent: 'Female',
-                        iconContent: Icon(
-                          FontAwesomeIcons.venus,
-                          size: 80,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          updateColor(2);
+                        });
+                      },
+                      child: ReusableCard(
+                        cardChild: CardContent(
+                          textContent: 'Female',
+                          iconContent: Icon(
+                            FontAwesomeIcons.venus,
+                            size: 80,
+                          ),
                         ),
+                        background: Color(femaleCardColor),
                       ),
-                      background: Color(femaleCardColor),
                     ),
                   ),
                 ],
