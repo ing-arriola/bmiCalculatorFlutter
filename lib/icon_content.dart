@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 class CardContent extends StatelessWidget {
   final String textContent;
@@ -16,9 +17,7 @@ class CardContent extends StatelessWidget {
         ),
         Text(
           textContent,
-          style: TextStyle(
-            fontSize: 18,
-          ),
+          style: kLabelTextStyle,
         )
       ],
     );
