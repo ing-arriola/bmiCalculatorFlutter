@@ -6,7 +6,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 //Colors
 const bottomContainerColor = 0xFFEB1555;
 const bottomContainerHeight = 80.0;
-const reusableCardColor = 0xFF1D1E33;
+const activeCard = 0xFF1D1E33;
+const inactiveCard = 0xFF111328;
 
 class InputPage extends StatefulWidget {
   @override
@@ -14,6 +15,19 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  int maleCardColor = inactiveCard;
+  int femaleCardColor = inactiveCard;
+  //male=1 & female=2
+  void updateColor(int gender) {
+    if (gender == 1) {
+      if (maleCardColor == activeCard) {
+        maleCardColor = inactiveCard;
+      } else {
+        maleCardColor = activeCard;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,15 +40,22 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   Expanded(
-                    child: ReusableCard(
-                      cardChild: CardContent(
-                        textContent: 'Male',
-                        iconContent: Icon(
-                          FontAwesomeIcons.mars,
-                          size: 80,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          updateColor(1);
+                        });
+                      },
+                      child: ReusableCard(
+                        cardChild: CardContent(
+                          textContent: 'Male',
+                          iconContent: Icon(
+                            FontAwesomeIcons.mars,
+                            size: 80,
+                          ),
                         ),
+                        background: Color(maleCardColor),
                       ),
-                      background: Color(reusableCardColor),
                     ),
                   ),
                   Expanded(
@@ -46,7 +67,7 @@ class _InputPageState extends State<InputPage> {
                           size: 80,
                         ),
                       ),
-                      background: Color(reusableCardColor),
+                      background: Color(femaleCardColor),
                     ),
                   ),
                 ],
@@ -57,7 +78,7 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                     child: ReusableCard(
-                      background: Color(reusableCardColor),
+                      background: Color(activeCard),
                     ),
                   ),
                 ],
@@ -68,10 +89,10 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   Expanded(
-                    child: ReusableCard(background: Color(reusableCardColor)),
+                    child: ReusableCard(background: Color(activeCard)),
                   ),
                   Expanded(
-                    child: ReusableCard(background: Color(reusableCardColor)),
+                    child: ReusableCard(background: Color(activeCard)),
                   ),
                 ],
               ),
