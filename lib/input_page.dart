@@ -5,7 +5,6 @@ import 'reusable_card.dart';
 import 'constants.dart';
 
 enum Gender { male, female }
-enum action { add, subtract }
 
 class InputPage extends StatefulWidget {
   @override
@@ -16,6 +15,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int height = 160;
   int weight = 50;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -170,16 +170,57 @@ class _InputPageState extends State<InputPage> {
                     ),
                   ),
                   Expanded(
-                    child: ReusableCard(background: Color(kActiveCard)),
+                    child: ReusableCard(
+                      background: Color(kActiveCard),
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'AGE',
+                            style: kLabelTextStyle,
+                          ),
+                          Text(
+                            age.toString(),
+                            style: kNumberTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundIconButton(
+                                  icon: FontAwesomeIcons.minus,
+                                  onPress: () {
+                                    setState(() {
+                                      age--;
+                                    });
+                                  }),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              RoundIconButton(
+                                  icon: FontAwesomeIcons.plus,
+                                  onPress: () {
+                                    setState(() {
+                                      age++;
+                                    });
+                                  }),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            Container(
-              color: Color(kBottomContainerColor),
-              height: kBottomContainerHeight,
-              width: double.infinity,
-              margin: EdgeInsets.only(top: 10),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                child: Text('CALCULATE'),
+                color: Color(kBottomContainerColor),
+                height: kBottomContainerHeight,
+                width: double.infinity,
+                margin: EdgeInsets.only(top: 10),
+              ),
             ),
           ],
         ));
