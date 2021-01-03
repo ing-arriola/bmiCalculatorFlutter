@@ -214,7 +214,11 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            BottomButton(route: '/result', label: 'CALCULATE'),
+            BottomButton(
+                route: '/result',
+                label: 'CALCULATE',
+                height: height,
+                weight: weight)
           ],
         ));
   }

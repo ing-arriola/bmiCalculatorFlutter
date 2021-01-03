@@ -1,17 +1,31 @@
+import 'package:bmi_calculator/pages/results_page.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
+import 'package:bmi_calculator/calculator_brain.dart';
 
 class BottomButton extends StatelessWidget {
   final String route;
   final String label;
+  final int height;
+  final int weight;
 
-  BottomButton({@required this.route, this.label});
+  BottomButton({this.route, this.label, this.height, this.weight});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(route);
+        if (route == '/result') {
+          CalculatorBrain calculator =
+              CalculatorBrain(weight: weight, height: height);
+          Navigator.of(context).pushNamed(route,
+              arguments: ScreenArguments(
+                  bmi: calculator.calculateBMI(),
+                  result: calculator.getResult(),
+                  interpretation: calculator.getInterpretation()));
+        } else {
+          Navigator.of(context).pushNamed(route);
+        }
       },
       child: Container(
         child: Center(

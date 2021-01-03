@@ -4,9 +4,19 @@ import '../constants.dart';
 import '../components/reusable_card.dart';
 import '../components/bottom_button.dart';
 
+//Defining arguments I do wanna get
+class ScreenArguments {
+  final String bmi;
+  final String result;
+  final String interpretation;
+
+  ScreenArguments({this.bmi, this.result, this.interpretation});
+}
+
 class Results extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final ScreenArguments args = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
         title: Text('BMI CALCULATOR'),
@@ -34,15 +44,14 @@ class Results extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Normal',
+                    args.result,
                     style: kResultsTitle,
                   ),
                   Text(
-                    '25.1',
+                    args.bmi,
                     style: kBMITextSyle,
                   ),
-                  Text('Lorem ipsum I mean just a message XD',
-                      style: kBodyTextSyle)
+                  Text(args.interpretation, style: kBodyTextSyle)
                 ],
               ),
             ),
