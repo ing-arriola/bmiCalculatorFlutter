@@ -28,3 +28,12 @@ const kTitleTextSyle = TextStyle(
 
 const kResultsTitle = TextStyle(
     color: Color(0xFF24D876), fontSize: 24, fontWeight: FontWeight.bold);
+
+const kBMITextSyle = TextStyle(
+  fontSize: 100,
+  fontWeight: FontWeight.bold,
+);
+
+const kBodyTextSyle = TextStyle(
+  fontSize: 22,
+);

@@ -2,6 +2,7 @@ import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'reusable_card.dart';
+import 'bottom_button.dart';
 
 class Results extends StatelessWidget {
   @override
@@ -33,11 +34,18 @@ class Results extends StatelessWidget {
                   Text(
                     'Normal',
                     style: kResultsTitle,
-                  )
+                  ),
+                  Text(
+                    '25.1',
+                    style: kBMITextSyle,
+                  ),
+                  Text('Lorem ipsum I mean just a message XD',
+                      style: kBodyTextSyle)
                 ],
               ),
             ),
-          )
+          ),
+          BottomButton(route: '/', label: 'Calculate again'),
         ],
       ),
     );
